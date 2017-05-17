@@ -6,9 +6,11 @@ import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +18,7 @@ import org.jsoup.select.Elements;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 public class Main {
@@ -32,25 +35,33 @@ public class Main {
         // will wait JavaScript to execute up to 30s
         webClient.waitForBackgroundJavaScript(30 * 1000);
         
+        WebResponse response = page.getWebResponse();
+        String content = response.getContentAsString();
         //System.setOut(new PrintStream(new File("output-file.txt")));
         //System.out.println(page.asXml());
 		
 		//String url = "https://groups.google.com/forum/#!topicsearchin/mercadopago-developers-brasil/woocommerce";
         
 		//try {
-		Document document = Jsoup.parse(page.asXml());
+		Document document = Jsoup.parse(StringEscapeUtils.unescapeHtml3(content));
 	
-	        //class IVILX2C-p-w
-        Elements threadsList = document.select("tbody[class=IVILX2C-p-w]");
+        //class IVILX2C-p-w
+        //Elements threadsList = document.getElementsByTag("a");
+		
+		/*Elements divs = document.select("div");
+		for (Element div : divs) {
+			System.out.println(div.toString());
+		}*/
 		
         System.setOut(new PrintStream(new File("output-file.txt")));
-        System.out.println(threadsList.get(0).html());
-	        //for (Element thread : threadsList) {
-	              //String title;
-	              //Elements titles = thread.select("a[class^=IVILX2C-p-Q]");
+        System.out.println(document.html());
+		
+        //for (Element thread : threadsList) {
+    		//String title;
+    		//Elements titles = thread.select("a[class^=IVILX2C-p-Q]");
 	              //title = titles.get(0).html();
-	              //System.out.println(thread.html());
-	        //}
+    		//System.out.println(thread.html());
+        //}
 	        /*String text = document.select("div").first().text();
 	        System.out.println(text);
 	
