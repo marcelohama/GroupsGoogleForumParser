@@ -2,8 +2,29 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/Users/mthama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/htmlunit-2.26-OSGi.jar"/>
-	<classpathentry kind="lib" path="/Users/mthama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jsoup-1.10.2.jar"/>
-	<classpathentry kind="lib" path="/Users/mthama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/cssparser-0.9.22.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/htmlunit-2.26.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/htmlunit-core-js-2.26.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jetty-client-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jetty-http-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jetty-io-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jetty-util-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/neko-htmlunit-2.25.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/serializer-2.7.2.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/websocket-api-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/websocket-client-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/websocket-common-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/xercesImpl-2.11.0.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="/Users/mhama/Documents/workspace/eclipse/GroupsGoogleForumParser/GoogleDevCommunityParser/libs/jsoup-1.10.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
