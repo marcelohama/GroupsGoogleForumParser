@@ -36,7 +36,7 @@ public class Main {
 			throws FailingHttpStatusCodeException, IOException {
 		
 		java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(java.util.logging.Level.OFF);
-		//System.setOut(new PrintStream(new File("output-file.html")));
+		System.setOut(new PrintStream(new File("output-file.html")));
 		
 		//===
 
@@ -54,27 +54,22 @@ public class Main {
 		List<String> links = getPostLinksFromDoc(createDocFromPageFromFile("prestashop.htm"));
 		
 		for (int i=0; i<links.size(); i++) {
+			String OUT = "";
 			HtmlPage porPage = loadPage(links.get(i), 40);
-			System.out.println("POST TITLE = " + getPostTitle(porPage));
+			OUT += "" + getPostTitle(porPage);
 			List<String> writers = getWriters(porPage);
 			List<String> dates = getPostDate(porPage);
 			if (writers.size() > 0 && dates.size() > 0) {
-				System.out.println("POST LAST WRITER = " + writers.get(writers.size()-1));
-				System.out.println("POST LAST DATE = " + dates.get(dates.size()-1));
+				OUT += " ***** " + writers.get(writers.size()-1);
+				OUT += " ***** " + dates.get(dates.size()-1);
 				if (Arrays.asList(MercadoLibreTeam).contains(writers.get(writers.size()-1))) {
-					System.out.println("IS REPLYED = YES");
+					OUT += " ***** YES";
 				} else {
-					System.out.println("IS REPLYED = NO");
+					OUT += " ***** NO";
 				}
 			}
-			System.out.println("=========================");
+			System.out.println(OUT);
 		}
-		
-		//outputPage(porPage);
-		
-		//for (int i=0; i<writers.size(); i++) {
-		//	System.out.println(writers.get(i));
-		//}
 		
 		//===
         
