@@ -22,21 +22,43 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 public class Main {
 	
-	private class ThreadRegister {
-		public String title;
-		public String lastPostDate;
-		public String lastPostWriter;
-	}
+	private static String[] communities = {
+			//"magento.htm",
+			//"magentobr.htm",
+			//"prestashop.htm",
+			//"prestashopbr.htm",
+			"opencart.htm",
+			"opencartbr.htm",
+			"woocommerce.htm",
+			"woocommercebr.htm",
+			"shopify.htm",
+			"shopifybr.htm",
+			"virtuemart.htm",
+			"virtuemartbr.htm",
+			"wpecommerce.htm",
+			"wpecommercebr.htm",
+			"zencart.htm",
+			"zencartbr.htm",
+			"oscommerce.htm",
+			"oscommercebr.htm"
+	};
 	
 	private static String[] MercadoLibreTeam = {
-			"Henrique Goncalves Leite"
+			"Henrique Goncalves Leite",
+			"MercadoPago Developers Community",
+			"Gabriel Matsuoka",
+			"Ramiro MP",
+			"Nicolás Roberts",
+			"Micaela Greisoris",
+			"Developers ",
+			"Stefania Limardi (MercadoPago)",
+			"Marcelo Hama"
 	};
 
 	public static void main(String[] args)
 			throws FailingHttpStatusCodeException, IOException {
 		
 		java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(java.util.logging.Level.OFF);
-		System.setOut(new PrintStream(new File("output-file.html")));
 		
 		//===
 
@@ -50,26 +72,51 @@ public class Main {
 		outputPage(postPage);
 		*/
 		
+		for (int j=0; j<communities.length; j++) {
+			// Output to file.
+			System.setOut(new PrintStream(new File(communities[j] + "-output.txt")));
+			// A manual approach, to cope with dynamic pagination for now.
+			List<String> links = getPostLinksFromDoc(createDocFromPageFromFile(communities[j] + ".htm"));
+			// Fill file with crawled information
+			for (int i=0; i<links.size(); i++) {
+				String OUT = "Google Dev Community";
+				HtmlPage porPage = loadPage(links.get(i), 40);
+				List<String> writers = getWriters(porPage);
+				List<String> dates = getPostDate(porPage);
+				if (writers.size() > 0 && dates.size() > 0) {
+					OUT += " ***** " + writers.get(writers.size()-1);
+					OUT += " ***** " + dates.get(dates.size()-1);
+					OUT += " ***** " + getPostTitle(porPage);
+					OUT += " ***** " + (Arrays.asList(MercadoLibreTeam).contains(writers.get(writers.size()-1)) ?
+							"Respondido" : "Pendente");
+					OUT += " ***** " + links.get(i);
+				}
+				System.out.println(OUT);
+			}
+		}
+		
+		/*
+		// Output to file.
+		System.setOut(new PrintStream(new File("output-file.html")));
+		
 		// A manual approach, to cope with dynamic pagination for now.
-		List<String> links = getPostLinksFromDoc(createDocFromPageFromFile("prestashop.htm"));
+		List<String> links = getPostLinksFromDoc(createDocFromPageFromFile("magentobr.htm"));
 		
 		for (int i=0; i<links.size(); i++) {
-			String OUT = "";
+			String OUT = "Google Dev Community";
 			HtmlPage porPage = loadPage(links.get(i), 40);
-			OUT += "" + getPostTitle(porPage);
 			List<String> writers = getWriters(porPage);
 			List<String> dates = getPostDate(porPage);
 			if (writers.size() > 0 && dates.size() > 0) {
 				OUT += " ***** " + writers.get(writers.size()-1);
 				OUT += " ***** " + dates.get(dates.size()-1);
-				if (Arrays.asList(MercadoLibreTeam).contains(writers.get(writers.size()-1))) {
-					OUT += " ***** YES";
-				} else {
-					OUT += " ***** NO";
-				}
+				OUT += " ***** " + getPostTitle(porPage);
+				OUT += " ***** " + "Pendente";
+				OUT += " ***** " + links.get(i);
 			}
 			System.out.println(OUT);
 		}
+		*/
 		
 		//===
         
