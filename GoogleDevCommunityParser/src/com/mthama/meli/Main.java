@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
@@ -23,10 +24,10 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 public class Main {
 	
 	private static String[] communities = {
-			//"magento.htm",
-			//"magentobr.htm",
-			//"prestashop.htm",
-			//"prestashopbr.htm",
+			"magento.htm",
+			"magentobr.htm",
+			/*"prestashop.htm",
+			"prestashopbr.htm",
 			"opencart.htm",
 			"opencartbr.htm",
 			"woocommerce.htm",
@@ -40,19 +41,33 @@ public class Main {
 			"zencart.htm",
 			"zencartbr.htm",
 			"oscommerce.htm",
-			"oscommercebr.htm"
+			"oscommercebr.htm"*/
 	};
 	
 	private static String[] MercadoLibreTeam = {
+			"MagentoDev",
 			"Henrique Goncalves Leite",
 			"MercadoPago Developers Community",
 			"Gabriel Matsuoka",
 			"Ramiro MP",
 			"Nicolás Roberts",
 			"Micaela Greisoris",
-			"Developers ",
+			"Developers",
+			"Developer",
 			"Stefania Limardi (MercadoPago)",
-			"Marcelo Hama"
+			"Marcelo Hama",
+			"Sebastián Gun (MercadoPago)",
+			"Marcelo T. Hama",
+			"Modulos Mercado Pago",
+			"FLAVIO AUGUSTO TEIXEIRA",
+			"Bruno de Oliva Bemfica",
+			"Matias Gordon (MercadoPago)",
+			"Horacio Casatti (MercadoPago)",
+			"Ricardo Brito de Souza",
+			"Victor Vasconcellos",
+			"Fabio Vaccaro (MercadoPago)",
+			"Rafael de Aquino Cunha",
+			"Nathan Rodrigues"
 	};
 
 	public static void main(String[] args)
@@ -74,9 +89,9 @@ public class Main {
 		
 		for (int j=0; j<communities.length; j++) {
 			// Output to file.
-			System.setOut(new PrintStream(new File(communities[j] + "-output.txt")));
+			System.setOut(new PrintStream(new File("output/" + communities[j] + "-output.txt")));
 			// A manual approach, to cope with dynamic pagination for now.
-			List<String> links = getPostLinksFromDoc(createDocFromPageFromFile(communities[j] + ".htm"));
+			List<String> links = getPostLinksFromDoc(createDocFromPageFromFile(communities[j]));
 			// Fill file with crawled information
 			for (int i=0; i<links.size(); i++) {
 				String OUT = "Google Dev Community";
@@ -84,11 +99,20 @@ public class Main {
 				List<String> writers = getWriters(porPage);
 				List<String> dates = getPostDate(porPage);
 				if (writers.size() > 0 && dates.size() > 0) {
+					// output writer of the first post
+					OUT += " ***** " + writers.get(0);
+					// output date of the first post
+					OUT += " ***** " + getFormatedDate(dates.get(0));
+					// output writer of the last post
 					OUT += " ***** " + writers.get(writers.size()-1);
-					OUT += " ***** " + dates.get(dates.size()-1);
+					// output date of the last post
+					OUT += " ***** " + getFormatedDate(dates.get(dates.size()-1));
+					// output post title
 					OUT += " ***** " + getPostTitle(porPage);
+					// check last post writer and, if he/she is on team, mark as replied
 					OUT += " ***** " + (Arrays.asList(MercadoLibreTeam).contains(writers.get(writers.size()-1)) ?
 							"Respondido" : "Pendente");
+					// output url
 					OUT += " ***** " + links.get(i);
 				}
 				System.out.println(OUT);
@@ -120,6 +144,23 @@ public class Main {
 		
 		//===
         
+	}
+	
+	public static String getFormatedDate(String date) {
+		String formated = date;
+		String[] months = {"jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"};
+		if (date.contains(" de ")) {
+			String[] s = date.split(" de ");
+			formated = s[0] + "/";
+			for (int i=0; i<months.length; i++) {
+				if (s[1].equals(months[i])) {
+					DecimalFormat df = new DecimalFormat("00");
+					formated += df.format(i+1);
+				}
+			}
+			formated += "/17";
+		}
+		return formated;
 	}
 	
 	//==============================================================================
